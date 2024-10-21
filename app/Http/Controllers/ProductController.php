@@ -11,13 +11,13 @@ class ProductController extends Controller
 {
     public function index()
     {
-        $products = Product::with('user')->get();
+        $products = Product::with('user')->paginate(20);
         return response()->json($products);
     }
 
     public function myProducts()
     {
-        $products = Product::where('user_id', Auth::id())->get();
+        $products = Product::where('user_id', Auth::id())->paginate(20);
         return response()->json($products);
     }
 
